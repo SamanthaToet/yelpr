@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 
 # yelpr
 
-The goal of yelpr is to ...
+R client for accessing Yelp's REST API. 
 
 ## Installation
 
@@ -27,26 +27,12 @@ You can install the released version of yelpr from [CRAN](https://CRAN.R-project
 install.packages("yelpr")
 ```
 
+## Connecting to Yelp
+
+To interface with the Yelp API, you'll need to create a Yelp Developer account. To do this, go to `https://www.yelp.com/developers`, and create an account through Yelp Fusion. Your app will auto generate a `Client ID` and `API Key`. Store the `API Key` in your working directory as `client_secret`.
+
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
-
-```{r example}
-## basic example code
+``` r
+get_yelp_search_data("chicken wings", "Charlottesville, VA")
 ```
-
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
-
-```{r cars}
-summary(cars)
-```
-
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date.
-
-You can also embed plots, for example:
-
-```{r pressure, echo = FALSE}
-plot(pressure)
-```
-
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub!
