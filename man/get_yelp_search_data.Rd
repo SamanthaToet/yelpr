@@ -28,6 +28,8 @@ get_yelp_search_data(term = NULL, location = NULL, latitude = NULL,
 
 \item{price}{Price ranging from $ to $$$}
 
+\item{attributes}{Additional attributes}
+
 \item{client_secret}{Your personal client secret}
 }
 \description{
