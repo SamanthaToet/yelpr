@@ -23,14 +23,20 @@ install.packages("yelpr")
 To interface with the Yelp API, you’ll need to register a [Yelp
 Developer account](https://www.yelp.com/developers) and then [create an
 app](https://www.yelp.com/developers/v3/manage_app). Your app will auto
-generate a `Client ID` and `API Key`. Store the `API Key` in your
-working directory as `client_secret`.
+generate a `Client ID` and `API Key`. Copy the value for the `API Key`
+and save that value in your keyring by running the below code:
 
 ``` r
-client_secret <- "API Key"
+key_set("yelp")
 ```
 
+You will be promped to paste your `API Key` in a separate password
+window.
+
 ## Example
+
+Get a list of all the restaurants that have chicken wings in
+Charlottesville, VA:
 
 ``` r
 get_yelp_search_data("chicken wings", "Charlottesville, VA")
