@@ -7,33 +7,46 @@
 get_yelp_search_data(term = NULL, location = NULL, latitude = NULL,
   longitude = NULL, radius = NULL, categories = NULL,
   locale = NULL, limit = 50, price = NULL, attributes = NULL,
-  client_secret = NULL)
+  client_secret = yelp_key("yelp"))
 }
 \arguments{
-\item{term}{Search term}
+\item{term}{Search term as a string, for example \code{"coffee"} or
+\code{"restaurants"}. The term may also be business names, such as
+\code{"Starbucks"}.}
 
-\item{location}{Search location. City with two letter state abbreviation. EX. \code{"Charlottesville, VA"}}
+\item{location}{Search location as a string. City with two letter state
+abbreviation. EX. \code{"Charlottesville, VA"}. Required if either latitude or
+longitude is not provided.}
 
-\item{latitude}{The geographic latitude measurement}
+\item{latitude}{The geographic latitude measurement as a decimal. EX. \code{38.1}.
+Required if \code{location} is not provided.}
 
-\item{longitude}{The geographic measurement}
+\item{longitude}{The geographic longitude measurement as a decimal. EX.
+\code{-78.5}. Required if \code{location} is not provided.}
 
-\item{radius}{Size of geographic area to pull results from}
+\item{radius}{Optional integer. A suggested search radius in meters. The max
+value is 40,000 meters (about 25 miles).}
 
-\item{categories}{Result categories. EX. \code{"Restaurants", "Health & Fitness", "Automobile"}}
+\item{locale}{Optional string. Specify the language and country codes.
+Defaults to \code{en_US}.
+\href{https://www.yelp.com/developers/documentation/v3/all_category_list}{See
+list of supported locales}.}
 
-\item{locale}{Language and country codes, from \url{https://www.yelp.com/developers/documentation/v3/supported_locales}}
+\item{limit}{Optional integer. Number of business results to return. Defaults
+to \code{20} and maximum is \code{50}.}
 
-\item{limit}{Maximum number of results}
+\item{price}{Optional string. Price categories to filter the search results
+with, ranging from \code{"$"} to \code{"$$$$"}}
 
-\item{price}{Price ranging from $ to $$$}
+\item{attributes}{Optional string. Additional filters to the search results
+such as \code{"wheelchair_accessible"}, or \code{"reservations"}.}
 
-\item{attributes}{Additional attributes}
-
-\item{client_secret}{Your personal client secret}
+\item{client_secret}{Required. Your personal Yelp API key stored in your
+keychain and retrieved by \code{get_key(service = "yelp")}.}
 }
 \description{
-With this function you can search all businesses in the yelp directory based on geographic location.
+With this function you can search all businesses in the Yelp directory based
+on geographic location.
 }
 \details{
 The output is a large table containing relevant businesses.

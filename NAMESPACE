@@ -2,4 +2,5 @@
 
 export("%>%")
 export(get_yelp_search_data)
+export(yelp_key)
 importFrom(magrittr,"%>%")
