@@ -18,11 +18,8 @@ get_yelp_search_data(term = NULL, location = NULL, latitude = NULL,
 abbreviation. EX. \code{"Charlottesville, VA"}. Required if either latitude or
 longitude is not provided.}
 
-\item{latitude}{The geographic latitude measurement as a decimal. EX. \code{38.1}.
-Required if \code{location} is not provided.}
-
-\item{longitude}{The geographic longitude measurement as a decimal. EX.
-\code{-78.5}. Required if \code{location} is not provided.}
+\item{latitude, longitude}{The geographic latitude and longitude measurements as a decimal. EX. \code{38.1}.
+Required if \code{location} is not provided. If provided \code{location}, will be ignored.}
 
 \item{radius}{Optional integer. A suggested search radius in meters. The max
 value is 40,000 meters (about 25 miles).}
