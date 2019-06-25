@@ -27,11 +27,29 @@ generate a `Client ID` and `API Key`. Copy the value for the `API Key`
 and save that value in your keyring by running the below code:
 
 ``` r
-key_set("yelp")
+keyring::key_set("yelp")
 ```
 
 You will be promped to paste your `API Key` in a separate password
 window.
+
+## Connecting to Google Maps
+
+To interface with the Google Maps API, you’ll need to enable the [Google
+Maps Platform](https://cloud.google.com/maps-platform/). Once you enable
+the services, copy your `API Key` from the popup window and save that
+value in your keyring by running the below code:
+
+``` r
+keyring::key_set("google_maps_api")
+```
+
+Once your google maps API key is stored, you need to tell `yelpr` about
+your key. Run the below code to register your key:
+
+``` r
+register_google(keyring::key_get("google_maps_api"))
+```
 
 ## Example
 
