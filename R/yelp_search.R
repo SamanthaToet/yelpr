@@ -18,7 +18,7 @@
 #' @param categories Optional string. Categories to filter the search results
 #'   with, such as `"automotive"` or `"retail"`.
 #'   \href{https://www.yelp.com/developers/documentation/v3/all_category_list}{See
-#'   list of supported categories}.}
+#'   list of supported categories}.
 #' @param locale Optional string. Specify the language and country codes.
 #'   Defaults to `en_US`.
 #'   \href{https://www.yelp.com/developers/documentation/v3/all_category_list}{See
@@ -138,19 +138,9 @@ get_yelp_search_data <- function(term = NULL,
                 
         } else {
                 
-                create_yelp_business_tbl()
+                create_empty_business_tbl()
         }
 }
-
-# id = character(), alias = character(), name = character(),
-# image_url = character(), yelp_url = character(),
-# category_1 = character(), category_2 = character(),
-# review_count = integer(), rating = numeric(), price = character(),
-# latitude = numeric(), longitude = numeric(),
-# addr_1 = character(), addr_2 = character(), addr_3 = character(),
-# city = character(), state_prov = character(), zip_postal = character(),
-# country = character(), phone = character(), d_phone = character(),
-# d_addr_1 = character(), d_addr_2 = character(), d_addr_3 = character())
 
 # Select and rename 
 
@@ -169,116 +159,9 @@ yelp_key <- function(key) {
 #' This is an internal function for creating an empty yelp business table. The function `import_yelp_business_records` populates the table with relevant business data. 
 #'
 #' @noRd
-create_yelp_business_tbl <- function() {
+create_empty_business_tbl <- function() {
         
         dplyr::tibble(
-                id = character(), alias = character(), name = character(),
-                image_url = character(), yelp_url = character(),
-                category_1 = character(), category_2 = character(),
-                review_count = integer(), rating = numeric(), price = character(),
-                latitude = numeric(), longitude = numeric(),
-                addr_1 = character(), addr_2 = character(), addr_3 = character(),
-                city = character(), state_prov = character(), zip_postal = character(),
-                country = character(), phone = character(), d_phone = character(),
-                d_addr_1 = character(), d_addr_2 = character(), d_addr_3 = character())
+                name = character(), city = character(), state = character(), address = character(),
+                rating = numeric(), price = character(), lat = numeric(), lon = numeric())
 }
-
-
-#' Import the JSON data from Yelp 
-#' 
-#' @noRd
-import_yelp_business_records <- function(business_list) {
-        
-        # Create empty table with the required column names
-        tbl <- create_yelp_business_tbl()
-        
-        # Add rows and fill with NA's to make correct size 
-        tbl <- tbl[1:length(business_list), ] 
-        
-        # For each item in business_list
-        for (i in seq(business_list)) {
-                
-                tbl[i, "id"] <- business_list[[i]]$id
-                tbl[i, "alias"] <- business_list[[i]]$alias
-                tbl[i, "name"] <- business_list[[i]]$name
-                tbl[i, "image_url"] <- business_list[[i]]$image_url
-                tbl[i, "yelp_url"] <- business_list[[i]]$url
-                
-                if (!is.null(business_list[[i]]$categories) &&
-                    length(business_list[[i]]$categories) > 0 &&
-                    !is.null(business_list[[i]]$categories[[1]]$title)) {
-                        tbl[i, "category_1"] <- business_list[[i]]$categories[[1]]$title
-                }
-                
-                if (!is.null(business_list[[i]]$categories) &&
-                    length(business_list[[i]]$categories) > 1 &&
-                    !is.null(business_list[[i]]$categories[[2]]$title)) {
-                        tbl[i, "category_2"] <- business_list[[i]]$categories[[2]]$title
-                }
-                
-                if (!is.null(business_list[[i]]$review_count)) {
-                        tbl[i, "review_count"] <- as.integer(business_list[[i]]$review_count)
-                }
-                
-                if (!is.null(business_list[[i]]$rating)) {
-                        tbl[i, "rating"] <- as.numeric(business_list[[i]]$rating)
-                }
-                
-                if (!is.null(business_list[[i]]$price)) {
-                        tbl[i, "price"] <- business_list[[i]]$price
-                }
-                
-                if (!is.null(business_list[[i]]$coordinates$latitude)) {
-                        tbl[i, "latitude"] <- as.numeric(business_list[[i]]$coordinates$latitude)
-                }
-                
-                if (!is.null(business_list[[i]]$coordinates$longitude)) {
-                        tbl[i, "longitude"] <- as.numeric(business_list[[i]]$coordinates$longitude)
-                }
-                
-                if (!is.null(business_list[[i]]$location$address1)) {
-                        tbl[i, "addr_1"] <- business_list[[i]]$location$address1
-                }
-                
-                if (!is.null(business_list[[i]]$location$address2)) {
-                        tbl[i, "addr_2"] <- business_list[[i]]$location$address2
-                }
-                
-                if (!is.null(business_list[[i]]$location$address3)) {
-                        tbl[i, "addr_3"] <- business_list[[i]]$location$address3
-                }
-                
-                tbl[i, "city"] <- business_list[[i]]$location$city
-                tbl[i, "state_prov"] <- business_list[[i]]$location$state
-                tbl[i, "zip_postal"] <- business_list[[i]]$location$zip_code
-                tbl[i, "country"] <- business_list[[i]]$location$country
-                tbl[i, "phone"] <- business_list[[i]]$phone
-                tbl[i, "d_phone"] <- business_list[[i]]$display_phone
-                
-                
-                if (!is.null(business_list[[i]]$location$display_address) &&
-                    length(business_list[[i]]$location$display_address) > 0 &&
-                    !is.null(business_list[[i]]$location$display_address[[1]])) {
-                        tbl[i, "d_addr_1"] <- business_list[[i]]$location$display_address[[1]]
-                }
-                
-                if (!is.null(business_list[[i]]$location$display_address) &&
-                    length(business_list[[i]]$location$display_address) > 1 &&
-                    !is.null(business_list[[i]]$location$display_address[[2]])) {
-                        tbl[i, "d_addr_2"] <- business_list[[i]]$location$display_address[[2]]
-                }
-                
-                if (!is.null(business_list[[i]]$location$display_address) &&
-                    length(business_list[[i]]$location$display_address) > 2 &&
-                    !is.null(business_list[[i]]$location$display_address[[3]])) {
-                        tbl[i, "d_addr_3"] <- business_list[[i]]$location$display_address[[3]]
-                }
-        }
-        tbl
-}
-
-
-# # Start plotting with leaflet 
-# test_tbl %>% leaflet() %>%
-#         addTiles() %>%
-#         addMarkers(lng = test_tbl$lon, lat = test_tbl$lat, popup = test_tbl$name)
