@@ -24,6 +24,11 @@ Required if \code{location} is not provided. If provided \code{location}, will b
 \item{radius}{Optional integer. A suggested search radius in meters. The max
 value is 40,000 meters (about 25 miles).}
 
+\item{categories}{Optional string. Categories to filter the search results
+with, such as \code{"automotive"} or \code{"retail"}.
+\href{https://www.yelp.com/developers/documentation/v3/all_category_list}{See
+list of supported categories}.}
+
 \item{locale}{Optional string. Specify the language and country codes.
 Defaults to \code{en_US}.
 \href{https://www.yelp.com/developers/documentation/v3/all_category_list}{See
