@@ -2,8 +2,8 @@ Package: yelpr
 Title: R Client for Accessing Yelp's REST API
 Version: 0.0.0.9000
 Authors@R: c(
-    person("Samantha", "Toet", email = "samanthactoet@gmail", role = "cre", "aut"),
-    person("Rich", "Iannone", email = "riannone@me.com", role = "aut"))
+    person("Samantha", "Toet", , email = "samanthactoet@gmail", role = c("cre", "aut")),
+    person("Rich", "Iannone", , email = "riannone@me.com", role = "aut"))
 Description: This package interfaces with Yelp's REST API. 
 License: MIT + file LICENSE
 Encoding: UTF-8
