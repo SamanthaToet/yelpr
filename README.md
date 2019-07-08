@@ -58,4 +58,8 @@ Charlottesville, VA:
 
 ``` r
 get_yelp_search_data("chicken wings", "Charlottesville, VA")
+
+## Maps 
+
+Include leaflet map output
 ```
