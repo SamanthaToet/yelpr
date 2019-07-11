@@ -11,12 +11,17 @@ API](https://www.yelp.com/developers/documentation/v3).
 
 ## Installation
 
-You can install the released version of yelpr from
-[CRAN](https://CRAN.R-project.org) with:
+You can install the in-development version from GitHub using the
+`remotes` package.
 
 ``` r
-install.packages("yelpr")
+install.packages("devtools")
+remotes::install_github("SamanthaToet/yelpr")
 ```
+
+If you encounter a bug, have usage questions, or want to share ideas to
+make this package better, feel free to file an
+[issue](https://github.com/SamanthaToet/yelpr/issues).
 
 ## Connecting to Yelp
 
@@ -58,8 +63,14 @@ Charlottesville, VA:
 
 ``` r
 get_yelp_search_data("chicken wings", "Charlottesville, VA")
-
-## Maps 
-
-Include leaflet map output
 ```
+
+## Code of Conduct
+
+Please note that this project is released with a [Contributor Code of
+Conduct](https://github.com/SamanthaToet/yelpr/blob/master/CODE_OF_CONDUCT.md).
+By participating in this project you agree to abide by its terms.
+
+## License
+
+MIT © Samantha Toet
