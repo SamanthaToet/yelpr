@@ -4,8 +4,14 @@ print.business_tbl <- function(x, ..., view = interactive()) {
                 leaflet::addTiles() %>%
                 leaflet::addMarkers(lng = x$lon, lat = x$lat, popup = x$name) %>%
                 print(browse = view, ...)
-        business_tbl <- x 
-        class(business_tbl) <- class(tibble::tibble())
-        print(business_tbl)
+        print.tibble(x)
         invisible(x)
 }
+
+#' @export
+print.tibble <- function(x, ..., view = interactive()) {
+        class(x) <- class(tibble::tibble())
+        business_tbl <- x
+        print(business_tbl)
+}
+
