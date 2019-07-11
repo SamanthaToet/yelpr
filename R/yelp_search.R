@@ -90,6 +90,7 @@ get_yelp_search_data <- function(term = NULL,
                 radius %>% ceiling %>% as.integer() -> radius
         }
         
+        
         # Make the connection to Yelp
         yelp_data <- 
                 httr::RETRY(
@@ -122,7 +123,9 @@ get_yelp_search_data <- function(term = NULL,
             yelp_data %>% httr::status_code() < 300) {
                 
                 httr_content <- httr::content(yelp_data, as = "text")
-                jsonlite::fromJSON(httr_content, flatten = TRUE)$businesses %>% 
+                
+                business_tbl <- 
+                        jsonlite::fromJSON(httr_content, flatten = TRUE)$businesses %>% 
                         dplyr::as_tibble() %>%
                         dplyr::select(
                                 name,
@@ -138,11 +141,16 @@ get_yelp_search_data <- function(term = NULL,
                 
         } else {
                 
-                create_empty_business_tbl()
+                business_tbl <- create_empty_business_tbl()
         }
+        class(business_tbl) <- c("business_tbl", class(business_tbl)) 
+        
+        business_tbl %>% 
+                dplyr::arrange(dplyr::desc(rating))
 }
 
-# Select and rename 
+
+
 
 #' Assign "yelp_key" class to key
 #' 
