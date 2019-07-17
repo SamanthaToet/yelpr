@@ -11,7 +11,6 @@ Authors@R:
              role = "aut",
              email = "riannone@me.com"))
 Description: This package interfaces with Yelp's REST API.
-    
 License: MIT + file LICENSE
 Imports: 
     dplyr,
