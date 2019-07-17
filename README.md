@@ -4,7 +4,7 @@
 [![Travis build
 status](https://travis-ci.org/SamanthaToet/yelpr.svg?branch=master)](https://travis-ci.org/SamanthaToet/yelpr)
 
-# yelpr
+# yelpr package
 
 R client for accessing the [Yelp Fusion
 API](https://www.yelp.com/developers/documentation/v3).

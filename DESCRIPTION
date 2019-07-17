@@ -1,20 +1,27 @@
 Package: yelpr
 Title: R Client for Accessing Yelp's REST API
 Version: 0.0.0.9000
-Authors@R: c(
-    person("Samantha", "Toet", , email = "samanthactoet@gmail", role = c("cre", "aut")),
-    person("Rich", "Iannone", , email = "riannone@me.com", role = "aut"))
-Description: This package interfaces with Yelp's REST API. 
+Authors@R: 
+    c(person(given = "Samantha",
+             family = "Toet",
+             role = c("cre", "aut"),
+             email = "samanthactoet@gmail"),
+      person(given = "Rich",
+             family = "Iannone",
+             role = "aut",
+             email = "riannone@me.com"))
+Description: This package interfaces with Yelp's REST API.
+    
 License: MIT + file LICENSE
+Imports: 
+    dplyr,
+    httr,
+    leaflet, 
+    magrittr,
+    tibble
+Suggests:
+    keyring
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
-Imports: 
-    magrittr,
-    dplyr,
-    httr,
-    leaflet, 
-    tibble
-Suggests:
-    keyring
