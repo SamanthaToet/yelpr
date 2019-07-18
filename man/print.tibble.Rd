@@ -7,7 +7,11 @@
 \method{print}{tibble}(x, ..., view = interactive())
 }
 \arguments{
-\item{x}{Yelp business search results}
+\item{x}{Yelp business search results.}
+
+\item{...}{Optional arguments to print.}
+
+\item{view}{Interactive}
 }
 \description{
 Print a table of the business listings

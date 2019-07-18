@@ -7,7 +7,11 @@
 \method{print}{business_tbl}(x, ..., view = interactive())
 }
 \arguments{
-\item{x}{Yelp business table created from search query}
+\item{x}{Yelp business table created from search query.}
+
+\item{...}{Optional arguments to print.}
+
+\item{view}{Interactive}
 }
 \description{
 Print a leaflet map of results
