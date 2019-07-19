@@ -10,3 +10,6 @@ addons:
     packages:
       - libsecret-1-dev
       - libsodium-dev
+
+after_success:
+    - Rscript -e 'covr::codecov()'
