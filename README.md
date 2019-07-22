@@ -6,7 +6,7 @@ status](https://travis-ci.org/SamanthaToet/yelpr.svg?branch=master)](https://tra
 [![Codecov test
 coverage](https://codecov.io/gh/SamanthaToet/yelpr/branch/master/graph/badge.svg)](https://codecov.io/gh/SamanthaToet/yelpr?branch=master)
 
-# yelpr package
+# yelpr
 
 R client for accessing the [Yelp Fusion
 API](https://www.yelp.com/developers/documentation/v3).
