@@ -5,6 +5,10 @@
 status](https://travis-ci.org/SamanthaToet/yelpr.svg?branch=master)](https://travis-ci.org/SamanthaToet/yelpr)
 [![Codecov test
 coverage](https://codecov.io/gh/SamanthaToet/yelpr/branch/master/graph/badge.svg)](https://codecov.io/gh/SamanthaToet/yelpr?branch=master)
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/yelpr)](https://CRAN.R-project.org/package=yelpr)
 
 # yelpr
 
