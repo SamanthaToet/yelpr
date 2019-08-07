@@ -68,7 +68,7 @@ Get a list of all the restaurants that have chicken wings in
 Charlottesville, VA:
 
 ``` r
-get_yelp_search_data("chicken wings", "Charlottesville, VA")
+yelp_search("chicken wings", "Charlottesville, VA")
 ```
 
 ## Code of Conduct
