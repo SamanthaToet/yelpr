@@ -16,6 +16,6 @@ business_list <- httr::content(
 
 yelpr:::import_yelp_business_records(business_list)
 
-chx <- get_yelp_search_data("chicken wings", "Charlottesville, VA", client_secret = client_secret)
+chx <- yelp_search("chicken wings", "Charlottesville, VA", client_secret = client_secret)
 
 

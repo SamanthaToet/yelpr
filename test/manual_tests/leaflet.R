@@ -1,4 +1,4 @@
-test_tbl <- get_yelp_search_data("thai", "Charlottesville")
+test_tbl <- yelp_search("thai", "Charlottesville")
 
 
 

@@ -33,59 +33,37 @@
 #'   keychain and retrieved by `get_key(service = "yelp")`.
 #' 
 #' @export
-get_yelp_search_data <- function(term = NULL,
-                                 location = NULL,
-                                 latitude = NULL,
-                                 longitude = NULL,
-                                 radius = NULL,
-                                 categories = NULL,
-                                 locale = NULL,
-                                 limit = 50,
-                                 price = NULL,
-                                 attributes = NULL,
-                                 client_secret = yelp_key("yelp")) {
+yelp_search <- function(term = NULL,
+                        location = NULL,
+                        latitude = NULL,
+                        longitude = NULL,
+                        radius = NULL,
+                        categories = NULL,
+                        locale = NULL,
+                        limit = 50,
+                        price = NULL,
+                        attributes = NULL,
+                        client_secret = yelp_key("yelp")) {
         
-        # Confirm client secret has class "yelp_key"
-        if (inherits(client_secret, "yelp_key")) {
-                
-                # Confirm they have keyring
-                if (!requireNamespace("keyring", quietly = TRUE)) {
-                        stop("The `keyring` package is required for using the ",
-                             "`yelp_key` function",
-                             call. = FALSE)
-                }
-                
-                # Confirm they have keyring support
-                if (!keyring::has_keyring_support()) {
-                        stop("To store Yelp key via *keyring*, the system needs to have",
-                             "*keyring* support", call. = FALSE)
-                }
-                
-                # Confirm client secret is stored
-                if (!("yelp" %in% keyring::key_list()$service)) {
-                        stop("There is no Yelp API key stored or it cannot be accessed.", call. = FALSE)
-                }
-                
-                # If client_secret pasted in as character, use that 
-                client_secret <- keyring::key_get(service = client_secret %>% as.character())
+        # Get client secret
+        client_secret <- get_secret(client_secret = client_secret)
         
-        }
         
         # Check that either location or lat/lon is provided
         if (is.null(location) & (is.null(latitude) & is.null(longitude))) {
                 stop("Either the `location`  or `latitude` and `longitude` ",
-                "is required.", call. = FALSE)
+                     "is required.", call. = FALSE)
         }
         
         # If radius is provided make sure it is under 40000 and rounded up to nearest whole number 
         if (!is.null(radius)) {
                 if (!is.numeric(radius)) {
-                      stop("Radius must be a numeric value.", call. = FALSE)  
+                        stop("Radius must be a numeric value.", call. = FALSE)  
                 }
                 if (radius > 40000) {
                         radius <- 40000
                         warning("The provided radius was greater than 40000 ",
-                        "so it was coerced to the maximum possible value of 40000.", call. = FALSE)
+                                "so it was coerced to the maximum possible value of 40000.", call. = FALSE)
                 }
                 radius %>% ceiling %>% as.integer() -> radius
         }
@@ -111,13 +89,13 @@ get_yelp_search_data <- function(term = NULL,
         
         # If connection fails because of credential issues, show why
         if (yelp_data %>% httr::status_code() >= 400 &
-                yelp_data %>% httr::status_code() < 500) {
+            yelp_data %>% httr::status_code() < 500) {
                 
                 # Print error code
                 status_code <- yelp_data %>% httr::status_code()
                 stop("Cannot connect to the Yelp API. Status code is ", status_code, ".", call. = FALSE)
         }
-
+        
         # If connection works, get the data  
         if (yelp_data %>% httr::status_code() >= 200 &
             yelp_data %>% httr::status_code() < 300) {
@@ -128,6 +106,7 @@ get_yelp_search_data <- function(term = NULL,
                         jsonlite::fromJSON(httr_content, flatten = TRUE)$businesses %>% 
                         dplyr::as_tibble() %>%
                         dplyr::select(
+                                id,
                                 name,
                                 city = location.city,
                                 state = location.state,
