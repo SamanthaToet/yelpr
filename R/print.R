@@ -13,6 +13,12 @@ print.business_tbl <- function(x, ..., view = interactive()) {
         invisible(x)
 }
 
+
+# leaflet::addProviderTiles(
+#         provider = "Stamen.Toner",
+#         group = "Stamen Toner"
+# )
+
 #' Print a table of the business listings
 #' 
 #' @param x Yelp business search results.
