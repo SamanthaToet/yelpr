@@ -1,6 +1,12 @@
-#' @param id 
+#' Connect to Yelp and get data 
 #'
-#' @param client_secret 
+#' With this function you can connect to Yelp using your API client secret or keyring. 
+#'
+#' The output is a large table containing relevant businesses.
+#' 
+#' @param id The business id provided by Yelp
+#'
+#' @param client_secret Your Yelp API client secret
 #'
 #' @export
 yelp_business <- function(id, client_secret = yelp_key("yelp")) {

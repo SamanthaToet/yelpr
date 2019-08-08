@@ -3,7 +3,8 @@
 #' With this function you can search all businesses in the Yelp directory based
 #' on geographic location.
 #'
-#' The output is a large table containing relevant businesses.
+#' The output is a large table containing relevant businesses and a Leaflet map 
+#' pinpointing their location. 
 #'
 #' @param term Search term as a string, for example `"coffee"` or
 #'   `"restaurants"`. The term may also be business names, such as

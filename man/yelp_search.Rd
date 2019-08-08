@@ -51,5 +51,6 @@ With this function you can search all businesses in the Yelp directory based
 on geographic location.
 }
 \details{
-The output is a large table containing relevant businesses.
+The output is a large table containing relevant businesses and a Leaflet map
+pinpointing their location.
 }
