@@ -2,7 +2,7 @@
 % Please edit documentation in R/yelp_business.R
 \name{yelp_business}
 \alias{yelp_business}
-\title{Connect to Yelp and get data}
+\title{Connect to Yelp and get a table of businesses}
 \usage{
 yelp_business(id, client_secret = yelp_key("yelp"))
 }

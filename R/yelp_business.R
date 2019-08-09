@@ -1,4 +1,4 @@
-#' Connect to Yelp and get data 
+#' Connect to Yelp and get a table of businesses
 #'
 #' With this function you can connect to Yelp using your API client secret or keyring. 
 #'
@@ -14,7 +14,7 @@ yelp_business <- function(id, client_secret = yelp_key("yelp")) {
         # Get client secret
         client_secret <- get_secret(client_secret = client_secret)
         
-        httr::RETRY(
+        yelp_data <- httr::RETRY(
                 verb = "GET",
                 url = paste0("https://api.yelp.com/v3/businesses/", id),
                 httr::add_headers(authorization = paste0("Bearer ", client_secret)))
@@ -45,3 +45,4 @@ yelp_business <- function(id, client_secret = yelp_key("yelp")) {
         }
         tbl
 }
+
