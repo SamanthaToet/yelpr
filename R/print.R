@@ -6,18 +6,16 @@
 #' @export
 print.business_tbl <- function(x, ..., view = interactive()) {
         x %>% leaflet::leaflet() %>%
-                leaflet::addTiles() %>%
+                leaflet::addProviderTiles(
+                        provider = "Stamen.TonerLite",
+                        group = "Stamen Toner"
+                ) %>%
                 leaflet::addMarkers(lng = x$lon, lat = x$lat, popup = x$name) %>%
                 print(browse = view, ...)
         print.tibble(x)
         invisible(x)
 }
 
-
-# leaflet::addProviderTiles(
-#         provider = "Stamen.Toner",
-#         group = "Stamen Toner"
-# )
 
 #' Print a table of the business listings
 #' 
