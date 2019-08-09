@@ -1,3 +1,11 @@
+#' Client Secret
+#' 
+#' This function confirms that the Yelp client secret is valid. 
+#'
+#' @param client_secret Your Yelp API client secret
+#'
+#' @return client secret
+#' @export
 get_secret <- function(client_secret) {
         
         # Confirm client secret has class "yelp_key"
