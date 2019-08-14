@@ -4,7 +4,7 @@
 #'
 #' The output is
 #' 
-#' @param id The business id provided by Yelp
+#' @param ids The business ids provided by Yelp
 #'
 #' @param client_secret Your Yelp API client secret
 #'
