@@ -15,6 +15,7 @@ License: MIT + file LICENSE
 Imports: 
     dplyr,
     httr,
+    htmltools,
     jsonlite,
     leaflet, 
     magrittr,
