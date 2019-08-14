@@ -38,8 +38,8 @@ yelp_businesses <- function(ids, client_secret = yelp_key("yelp")) {
                 # Retrieve the content 
                 httr_content <- httr::content(yelp_data, as = "text")
                 
-                # Convert to JSON and store in tbl
-                tbl <- jsonlite::fromJSON(httr_content, flatten = TRUE)$hours %>% 
+                # Convert to JSON and store in hours
+                hours <- jsonlite::fromJSON(httr_content, flatten = TRUE)$hours %>% 
                         dplyr::as_tibble()
                 browser()
                 
