@@ -97,12 +97,14 @@ yelp_search <- function(term = NULL,
                 stop("Cannot connect to the Yelp API. Status code is ", status_code, ".", call. = FALSE)
         }
         
-        # If connection works, get the data  
+        # If connection works, get the data
         if (yelp_data %>% httr::status_code() >= 200 &
             yelp_data %>% httr::status_code() < 300) {
                 
+                # Retrieve the content
                 httr_content <- httr::content(yelp_data, as = "text")
                 
+                # Convert from JSON and store in busines_tbl
                 business_tbl <- 
                         jsonlite::fromJSON(httr_content, flatten = TRUE)$businesses %>% 
                         dplyr::as_tibble() %>%
@@ -121,10 +123,14 @@ yelp_search <- function(term = NULL,
                 
         } else {
                 
+                # Create empty business table
                 business_tbl <- create_empty_business_tbl()
         }
+        
+        # Change the class of business_tbl to "business_tbl"
         class(business_tbl) <- c("business_tbl", class(business_tbl)) 
         
+        # Sort in descenting order 
         business_tbl %>% 
                 dplyr::arrange(dplyr::desc(rating))
 }
@@ -132,7 +138,9 @@ yelp_search <- function(term = NULL,
 
 
 
-#' Assign "yelp_key" class to key
+#' Assign "yelp_key" class to your Yelp API key
+#' 
+#' This is an internal function for assigning the custom class "yelp_key" to the key value.
 #' 
 #' @param key yelp key
 #' @export
@@ -142,13 +150,14 @@ yelp_key <- function(key) {
 }
 
 
-#' Create empty yelp business table
+#' Create empty Yelp business table
 #'
-#' This is an internal function for creating an empty yelp business table. The function `import_yelp_business_records` populates the table with relevant business data. 
+#' This is an internal function for creating an empty Yelp business table. The function `import_yelp_business_records` populates the table with relevant business data. 
 #'
 #' @noRd
 create_empty_business_tbl <- function() {
         
+        # Build an empty data frame and assign names and classes to columns 
         dplyr::tibble(
                 name = character(), city = character(), state = character(), address = character(),
                 rating = numeric(), price = character(), lat = numeric(), lon = numeric())
