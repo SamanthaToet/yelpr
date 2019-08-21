@@ -130,9 +130,12 @@ yelp_search <- function(term = NULL,
         # Change the class of business_tbl to "business_tbl"
         class(business_tbl) <- c("business_tbl", class(business_tbl)) 
         
-        # Sort in descenting order 
+        # Sort in descenting order
+        # TODO: Augment table with extra API calls 
         business_tbl %>% 
-                dplyr::arrange(dplyr::desc(rating))
+                dplyr::arrange(dplyr::desc(rating)) %>%
+                yelp_businesses() %>%
+                dplyr::select(-id)
 }
 
 
