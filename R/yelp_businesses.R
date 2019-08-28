@@ -41,12 +41,14 @@ yelp_businesses <- function(tbl, client_secret = yelp_key("yelp")) {
                         
                         if(is.null(hours_from_json)) {
                                 hours <- NA_character_
-                        } else {
+                        } else { 
                                 hours <- hours_from_json %>%
                                         dplyr::as_tibble() %>% dplyr::select(`open`) %>%
                                         .$`open` %>%
                                         .[[1]] %>% 
-                                        dplyr::select(start, end) %>% 
+                                        tidyr::unite(col = "hours", start, end, sep = " - ") %>%
+                                        tidyr::complete(day = tidyr::full_seq(day, 1)) %>%
+                                        dplyr::select(hours) %>% 
                                         t() %>% 
                                         dplyr::as_tibble() %>% 
                                         unlist() %>% 
@@ -59,8 +61,12 @@ yelp_businesses <- function(tbl, client_secret = yelp_key("yelp")) {
                 
                 }
         }
-        tbl %>%
-                dplyr::mutate(hours = hours_vec)
+        suppressWarnings(
+                tbl %>%
+                        dplyr::mutate(hours = hours_vec) %>%
+                        tidyr::separate(
+                                col = hours, 
+                                into = paste0("hours_", c("sun", "mon", "tue", "wed", "thu", "fri", "sat")), 
+                                sep = ";", convert = TRUE)
+        )
 }
-
-

@@ -19,7 +19,8 @@ Imports:
     jsonlite,
     leaflet, 
     magrittr,
-    tibble
+    tibble, 
+    tidyr
 Suggests:
     keyring,
     covr
