@@ -27,7 +27,8 @@ print.business_tbl <- function(x, ..., view = interactive()) {
 #' @export
 print.tibble <- function(x, ..., view = interactive()) {
         class(x) <- class(tibble::tibble())
-        business_tbl <- x
+        business_tbl <- x %>%
+                dplyr::select(name, city)
         print(business_tbl)
 }
 
