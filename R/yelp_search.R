@@ -102,7 +102,7 @@ yelp_search <- function(term = NULL,
             yelp_data %>% httr::status_code() < 300) {
                 
                 # Retrieve the content
-                httr_content <- httr::content(yelp_data, as = "text")
+                httr_content <- httr::content(yelp_data, as = "text", encoding = "UTF-8")
                 
                 # Convert from JSON and store in busines_tbl
                 business_tbl <- 
@@ -127,15 +127,16 @@ yelp_search <- function(term = NULL,
                 business_tbl <- create_empty_business_tbl()
         }
         
-        # Change the class of business_tbl to "business_tbl"
-        class(business_tbl) <- c("business_tbl", class(business_tbl)) 
-        
         # Sort in descenting order
         # TODO: Augment table with extra API calls 
-        business_tbl %>% 
+        business_tbl <- business_tbl %>% 
                 dplyr::arrange(dplyr::desc(rating)) %>%
                 yelp_businesses() %>%
                 dplyr::select(-id)
+        
+        # Change the class of business_tbl to "business_tbl"
+        class(business_tbl) <- c("business_tbl", class(business_tbl))
+        business_tbl
 }
 
 

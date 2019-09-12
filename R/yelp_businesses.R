@@ -34,7 +34,7 @@ yelp_businesses <- function(tbl, client_secret = yelp_key("yelp")) {
                     yelp_data %>% httr::status_code() < 300) {
                         
                         # Retrieve the content 
-                        httr_content <- httr::content(yelp_data, as = "text")
+                        httr_content <- httr::content(yelp_data, as = "text", encoding = "UTF-8")
                         
                         # Convert to JSON and store in hours
                         hours_from_json <- jsonlite::fromJSON(httr_content, flatten = TRUE)$hours 
