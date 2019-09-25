@@ -6,7 +6,7 @@
 #' @export
 print.business_tbl <- function(x, ..., view = interactive()) {
         popup <- paste0("<p style=\"text-align:center;\"><strong>", x$name, "</strong>", "<br>", "Rating: ", x$rating, "<br>", x$address, "</p>")
-        # popup <- htmltools::tags$p(x$name) %>% as.character() - try with for loop
+        #popup <- htmltools::tags$p(x$name) %>% as.character() - try with for loop
         x %>% leaflet::leaflet() %>%
                 leaflet::addProviderTiles(
                         provider = "Stamen.TonerLite",
@@ -14,21 +14,5 @@ print.business_tbl <- function(x, ..., view = interactive()) {
                 ) %>%
                 leaflet::addMarkers(lng = x$lon, lat = x$lat, popup = popup) %>%
                 print(browse = view, ...)
-        print.tibble(x)
-        invisible(x)
+        NextMethod()
 }
-
-
-#' Print a table of the business listings
-#' 
-#' @param x Yelp business search results.
-#' @param ... Optional arguments to print.
-#' @param view Interactive
-#' @export
-print.tibble <- function(x, ..., view = interactive()) {
-        class(x) <- class(tibble::tibble())
-        business_tbl <- x %>%
-                dplyr::select(name, city)
-        print(business_tbl)
-}
-

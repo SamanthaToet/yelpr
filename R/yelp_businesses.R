@@ -10,7 +10,7 @@ yelp_businesses <- function(tbl, client_secret = yelp_key("yelp")) {
         # Pull ids out of business_tbl
         ids <- tbl %>% dplyr::pull(id)
         
-        hours_vec <- c()
+        hours_list <- list()
 
         for (id in ids) {
                 
@@ -40,33 +40,35 @@ yelp_businesses <- function(tbl, client_secret = yelp_key("yelp")) {
                         hours_from_json <- jsonlite::fromJSON(httr_content, flatten = TRUE)$hours 
                         
                         if(is.null(hours_from_json)) {
-                                hours <- NA_character_
-                        } else { 
+                                hours <- empty_day_tbl()
+                        } else {
                                 hours <- hours_from_json %>%
-                                        dplyr::as_tibble() %>% dplyr::select(`open`) %>%
-                                        .$`open` %>%
+                                        dplyr::as_tibble() %>% dplyr::select(open) %>%
+                                        .[["open"]] %>%
                                         .[[1]] %>% 
-                                        tidyr::unite(col = "hours", start, end, sep = " - ") %>%
+                                        dplyr::as_tibble() %>%
+                                        # tidyr::unite(col = "hours", start, end, sep = " - ") %>%
                                         tidyr::complete(day = tidyr::full_seq(day, 1)) %>%
-                                        dplyr::select(hours) %>% 
-                                        t() %>% 
-                                        dplyr::as_tibble() %>% 
-                                        unlist() %>% 
-                                        unname() %>%
-                                        paste(collapse = ";")
+                                        dplyr::left_join(day_lookup_tbl(), by = "day") %>%
+                                        dplyr::mutate_at(dplyr::vars(start, end), as.numeric) %>%
+                                        dplyr::select(day = day_name, weekday, start, end, is_overnight)
+                                        # dplyr::select(hours) %>% 
+                                        # t() %>% 
+                                        # dplyr::as_tibble() %>% 
+                                        # unlist() %>% 
+                                        # unname() %>%
+                                        # paste(collapse = ";")
                         }
                         
                         # Add to hours vector
-                        hours_vec <- c(hours_vec, hours)
+                        hours_list <- c(hours_list, list(hours))
+                        
                 
                 }
         }
-        suppressWarnings(
+        
+        # Get and separate hours
+        # suppressWarnings(
                 tbl %>%
-                        dplyr::mutate(hours = hours_vec) %>%
-                        tidyr::separate(
-                                col = hours, 
-                                into = paste0("hours_", c("sun", "mon", "tue", "wed", "thu", "fri", "sat")), 
-                                sep = ";", convert = TRUE)
-        )
+                        dplyr::mutate(hours = hours_list) #%>%
 }
