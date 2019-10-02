@@ -32,6 +32,7 @@
 #'   such as `"wheelchair_accessible"`, or `"reservations"`.
 #' @param client_secret Required. Your personal Yelp API key stored in your
 #'   keychain and retrieved by `get_key(service = "yelp")`.
+#' @param reviews The Yelp API only returns up to 3 reviews so this is turned off by default. 
 #' 
 #' @export
 yelp_search <- function(term = NULL,
@@ -44,7 +45,8 @@ yelp_search <- function(term = NULL,
                         limit = 50,
                         price = NULL,
                         attributes = NULL,
-                        client_secret = yelp_key("yelp")) {
+                        client_secret = yelp_key("yelp"), 
+                        reviews = FALSE) {
         
         # Get client secret
         client_secret <- get_secret(client_secret = client_secret)
@@ -130,7 +132,7 @@ yelp_search <- function(term = NULL,
         # Sort in descenting order
         business_tbl <- business_tbl %>% 
                 dplyr::arrange(dplyr::desc(rating)) %>%
-                yelp_businesses() %>%
+                yelp_businesses(reviews = reviews) %>%
                 dplyr::select(-id)
                 
         # Change the class of business_tbl to "business_tbl"

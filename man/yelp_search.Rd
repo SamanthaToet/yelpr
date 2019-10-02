@@ -7,7 +7,7 @@
 yelp_search(term = NULL, location = NULL, latitude = NULL,
   longitude = NULL, radius = NULL, categories = NULL,
   locale = NULL, limit = 50, price = NULL, attributes = NULL,
-  client_secret = yelp_key("yelp"))
+  client_secret = yelp_key("yelp"), reviews = FALSE)
 }
 \arguments{
 \item{term}{Search term as a string, for example \code{"coffee"} or
@@ -45,6 +45,8 @@ such as \code{"wheelchair_accessible"}, or \code{"reservations"}.}
 
 \item{client_secret}{Required. Your personal Yelp API key stored in your
 keychain and retrieved by \code{get_key(service = "yelp")}.}
+
+\item{reviews}{The Yelp API only returns up to 3 reviews so this is turned off by default.}
 }
 \description{
 With this function you can search all businesses in the Yelp directory based
