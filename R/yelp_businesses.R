@@ -52,12 +52,6 @@ yelp_businesses <- function(tbl, client_secret = yelp_key("yelp")) {
                                         dplyr::left_join(day_lookup_tbl(), by = "day") %>%
                                         dplyr::mutate_at(dplyr::vars(start, end), as.numeric) %>%
                                         dplyr::select(day = day_name, weekday, start, end, is_overnight)
-                                        # dplyr::select(hours) %>% 
-                                        # t() %>% 
-                                        # dplyr::as_tibble() %>% 
-                                        # unlist() %>% 
-                                        # unname() %>%
-                                        # paste(collapse = ";")
                         }
                         
                         # Add to hours vector
