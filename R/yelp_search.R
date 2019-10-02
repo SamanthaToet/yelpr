@@ -32,7 +32,7 @@
 #'   such as `"wheelchair_accessible"`, or `"reservations"`.
 #' @param client_secret Required. Your personal Yelp API key stored in your
 #'   keychain and retrieved by `get_key(service = "yelp")`.
-#' @param reviews The Yelp API only returns up to 3 reviews so this is turned off by default. 
+#' @param reviews Logical. Should up to 3 reviews be returned? The Yelp API currently only returns up to 3 reviews, so this is turned off by default. 
 #' 
 #' @export
 yelp_search <- function(term = NULL,

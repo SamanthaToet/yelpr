@@ -10,6 +10,7 @@ yelp_businesses <- function(tbl, client_secret = yelp_key("yelp"), reviews) {
         # Pull ids out of business_tbl
         ids <- tbl %>% dplyr::pull(id)
         
+        # Create a list of hours for each business
         hours_list <- list()
 
         for (id in ids) {
@@ -39,6 +40,7 @@ yelp_businesses <- function(tbl, client_secret = yelp_key("yelp"), reviews) {
                         # Convert to JSON and store in hours
                         hours_from_json <- jsonlite::fromJSON(httr_content, flatten = TRUE)$hours 
                         
+                        # Organize 
                         if(is.null(hours_from_json)) {
                                 hours <- empty_day_tbl()
                         } else {
@@ -47,7 +49,6 @@ yelp_businesses <- function(tbl, client_secret = yelp_key("yelp"), reviews) {
                                         .[["open"]] %>%
                                         .[[1]] %>% 
                                         dplyr::as_tibble() %>%
-                                        # tidyr::unite(col = "hours", start, end, sep = " - ") %>%
                                         tidyr::complete(day = tidyr::full_seq(day, 1)) %>%
                                         dplyr::left_join(day_lookup_tbl(), by = "day") %>%
                                         dplyr::mutate_at(dplyr::vars(start, end), as.numeric) %>%
@@ -56,13 +57,13 @@ yelp_businesses <- function(tbl, client_secret = yelp_key("yelp"), reviews) {
                         
                         # Add to hours vector
                         hours_list <- c(hours_list, list(hours))
-                        
                 } 
         }
-        # Show hours 
+        # Add hours to tbl 
         tbl %>%
                 dplyr::mutate(hours = hours_list) -> tbl
         
+        # Get reviews
         if (isTRUE(reviews)) {
                 reviews_list <- list()
                 
@@ -94,16 +95,15 @@ yelp_businesses <- function(tbl, client_secret = yelp_key("yelp"), reviews) {
                                 reviews_from_json <- jsonlite::fromJSON(httr_content, flatten = TRUE)$reviews %>%
                                         dplyr::as_tibble()
                                 
+                                # Organize
                                 reviews_list <- c(reviews_list, list(reviews_from_json))
                         }
                         }
-                                
+                 
+                # Add reviews to tbl               
                 tbl %>%
                         dplyr::mutate(reviews = reviews_list) -> tbl
         }
-
+                # Print the tbl
                 tbl
         }
-        
-        
-                
