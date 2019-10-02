@@ -4,13 +4,11 @@
 \alias{get_hours}
 \title{Print a table of hours for a business}
 \usage{
-get_hours(tbl, client_secret = yelp_key("yelp"))
+get_hours(tbl, business_name = NULL)
 }
 \arguments{
-\item{tbl}{}
-
-\item{client_secret}{}
+\item{tbl}{the results of yelp_search}
 }
 \description{
-Print a table of hours for a business
+This is a helper function
 }

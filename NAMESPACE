@@ -3,6 +3,7 @@
 S3method(print,business_tbl)
 export("%>%")
 export(get_hours)
+export(get_reviews)
 export(get_secret)
 export(yelp_key)
 export(yelp_search)
