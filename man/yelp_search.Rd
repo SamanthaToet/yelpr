@@ -46,7 +46,7 @@ such as \code{"wheelchair_accessible"}, or \code{"reservations"}.}
 \item{client_secret}{Required. Your personal Yelp API key stored in your
 keychain and retrieved by \code{get_key(service = "yelp")}.}
 
-\item{reviews}{The Yelp API only returns up to 3 reviews so this is turned off by default.}
+\item{reviews}{Logical. Should up to 3 reviews be returned? The Yelp API currently only returns up to 3 reviews, so this is turned off by default.}
 }
 \description{
 With this function you can search all businesses in the Yelp directory based

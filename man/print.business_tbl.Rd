@@ -11,7 +11,7 @@
 
 \item{...}{Optional arguments to print.}
 
-\item{view}{Interactive}
+\item{view}{Interactive leaflet map}
 }
 \description{
 Print a leaflet map of results

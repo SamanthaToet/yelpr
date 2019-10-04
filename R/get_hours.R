@@ -1,13 +1,17 @@
 #' Print a table of hours for a business
 #'
-#' This is a helper function
+#' This is a helper function to be used with `yelp_search` to parse the hours for a specific business or list of businesses. 
 #'
-#' @param tbl the results of yelp_search
+#' @param tbl The results of `yelp_search` stored as a dataframe. 
+#' @param business_name Optional string. The name of a specific business to get hours for. Defaults to `NULL`.  
 #'
-#' @return
+#' @return A dataframe of hours of operation. 
+#' 
 #' @export
 #'
-#' @examples
+#' @examples 
+#' get_hours(tbl)
+#' get_hours(tbl, "Wegmans")
 get_hours <- function(tbl, business_name = NULL) {
        
         if (!is.null(business_name)) {
@@ -19,4 +23,3 @@ get_hours <- function(tbl, business_name = NULL) {
                 dplyr::select(name, hours) %>%
                 tidyr::unnest()
 }
-

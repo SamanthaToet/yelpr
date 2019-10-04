@@ -7,8 +7,17 @@
 get_hours(tbl, business_name = NULL)
 }
 \arguments{
-\item{tbl}{the results of yelp_search}
+\item{tbl}{The results of \code{yelp_search} stored as a dataframe.}
+
+\item{business_name}{Optional string. The name of a specific business to get hours for. Defaults to \code{NULL}.}
+}
+\value{
+A dataframe of hours of operation.
 }
 \description{
-This is a helper function
+This is a helper function to be used with \code{yelp_search} to parse the hours for a specific business or list of businesses.
+}
+\examples{
+get_hours(tbl)
+get_hours(tbl, "Wegmans")
 }
