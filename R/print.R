@@ -3,6 +3,7 @@
 #' @param x Yelp business table created from search query.
 #' @param ... Optional arguments to print.
 #' @param view Interactive leaflet map
+#' 
 #' @export
 print.business_tbl <- function(x, ..., view = interactive()) {
         popup <- paste0("<p style=\"text-align:center;\"><strong>", x$name, "</strong>", "<br>", "Rating: ", x$rating, "<br>", x$address, "</p>")

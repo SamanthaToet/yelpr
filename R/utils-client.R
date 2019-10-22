@@ -1,8 +1,8 @@
-#' Client Secret
+#' Get and store your Yelp client secret
 #' 
-#' This function confirms that the Yelp client secret is valid. 
+#' This function confirms that the Yelp client secret is valid and stored correctly in your keyring. 
 #'
-#' @param client_secret Your Yelp API client secret
+#' @param client_secret Your Yelp API client secret generated through [Yelp Fusion](https://www.yelp.com/developers/documentation/v3/authentication).
 #'
 #' @return client secret
 #' @export

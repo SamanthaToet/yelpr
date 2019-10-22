@@ -2,16 +2,16 @@
 % Please edit documentation in R/utils-client.R
 \name{get_secret}
 \alias{get_secret}
-\title{Client Secret}
+\title{Get and store your Yelp client secret}
 \usage{
 get_secret(client_secret)
 }
 \arguments{
-\item{client_secret}{Your Yelp API client secret}
+\item{client_secret}{Your Yelp API client secret generated through \href{https://www.yelp.com/developers/documentation/v3/authentication}{Yelp Fusion}.}
 }
 \value{
 client secret
 }
 \description{
-This function confirms that the Yelp client secret is valid.
+This function confirms that the Yelp client secret is valid and stored correctly in your keyring.
 }

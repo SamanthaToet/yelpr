@@ -2,7 +2,7 @@
 % Please edit documentation in R/yelp_search.R
 \name{yelp_key}
 \alias{yelp_key}
-\title{Assign "yelp_key" class to your Yelp API key}
+\title{Assign \code{yelp_key} class to your Yelp API key}
 \usage{
 yelp_key(key)
 }

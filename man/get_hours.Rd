@@ -20,4 +20,5 @@ This is a helper function to be used with \code{yelp_search} to parse the hours 
 \examples{
 get_hours(tbl)
 get_hours(tbl, "Wegmans")
+
 }

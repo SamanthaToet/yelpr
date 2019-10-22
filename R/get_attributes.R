@@ -1,12 +1,17 @@
-#' Print a table of three reviews for each business
+#' Print a table of up to three reviews for each business
+#' 
+#' This is a helper function to be used with `yelp_search` to parse the reviews for a specific business or list of businesses. The Yelp API currently only returns up to three truncated reviews for each business. 
 #'
-#' @param tbl 
-#' @param business_name 
+#' @param tbl The results of `yelp_search` stored as a dataframe.
+#' @param business_name Optional string. The name of a specific business to get reviews for. Defaults to `NULL` 
 #'
-#' @return
+#' @return A dataframe with up to 3 truncated reviews for each business.
+#' 
+#' @example 
+#' get_reviews(tbl)
+#' get_reviews(tbl, "Wegmans")
+#' 
 #' @export
-#'
-#' @examples
 get_reviews <- function(tbl, business_name = NULL) {
         
         if (!("reviews" %in% names(tbl))) {
@@ -27,11 +32,11 @@ get_reviews <- function(tbl, business_name = NULL) {
 #'
 #' @return A dataframe of hours of operation. 
 #' 
-#' @export
-#'
 #' @examples 
 #' get_hours(tbl)
 #' get_hours(tbl, "Wegmans")
+#' 
+#' @export
 get_hours <- function(tbl, business_name = NULL) {
         
         get_column(tbl = tbl, column_name = hours, business_name = business_name)

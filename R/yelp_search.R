@@ -143,7 +143,7 @@ yelp_search <- function(term = NULL,
 
 
 
-#' Assign "yelp_key" class to your Yelp API key
+#' Assign `yelp_key` class to your Yelp API key
 #' 
 #' This is an internal function for assigning the custom class "yelp_key" to the key value.
 #' 
