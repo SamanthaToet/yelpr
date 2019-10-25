@@ -19,8 +19,10 @@ Imports:
     jsonlite,
     leaflet, 
     magrittr,
+    rvest,
     tibble, 
-    tidyr
+    tidyr, 
+    xml2
 Suggests:
     keyring,
     covr,
