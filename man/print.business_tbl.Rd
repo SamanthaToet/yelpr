@@ -2,17 +2,21 @@
 % Please edit documentation in R/print.R
 \name{print.business_tbl}
 \alias{print.business_tbl}
-\title{Print a leaflet map of results}
+\title{Print a Leaflet map of results}
 \usage{
-\method{print}{business_tbl}(x, ..., view = interactive())
+\method{print}{business_tbl}(x, ..., view = interactive(),
+  show_map = getOption("yelpr.show_map"))
 }
 \arguments{
 \item{x}{Yelp business table created from search query.}
 
 \item{...}{Optional arguments to print.}
 
-\item{view}{Interactive leaflet map}
+\item{view}{Interactive leaflet map.}
+}
+\value{
+Returns a table of relevant businesses in the console and prints an interactive Leaflet map in the Viewer tab. Relevant businesses are marked.
 }
 \description{
-Print a leaflet map of results
+Print a Leaflet map of results
 }
