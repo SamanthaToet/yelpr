@@ -31,8 +31,8 @@ get_reviews <- function(tbl, business_name = NULL) {
 #'
 #' @return A dataframe of hours of operation. 
 #' 
-#' @examples 
-#' get_hours(tbl)
+#' @examples
+#' get_hours(tbl) 
 #' get_hours(tbl, "Wegmans")
 #' 
 #' @export

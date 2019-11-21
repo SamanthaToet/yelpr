@@ -18,7 +18,7 @@ A dataframe of hours of operation.
 This is a helper function to be used with \code{yelp_search} to parse the hours for a specific business or list of businesses.
 }
 \examples{
-get_hours(tbl)
+get_hours(tbl) 
 get_hours(tbl, "Wegmans")
 
 }
