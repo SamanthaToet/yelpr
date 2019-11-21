@@ -1,6 +1,7 @@
-#' Connect to Yelp and get a table of businesses
+#' Connect to Yelp and get a table of businesses.
 #'
-#' This function connects to the Yelp API and gets data for a relevant business based on the business id.  
+#' This is an internal function that connects to the Yelp API and gets data for a relevant business based on its id.  
+#' 
 #' @noRd
 yelp_businesses <- function(tbl, client_secret = yelp_key("yelp"), reviews) {
         

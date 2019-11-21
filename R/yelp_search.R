@@ -1,7 +1,7 @@
 #' Search yelp business data
 #'
 #' With this function you can search all businesses in the Yelp directory based
-#' on geographic location.
+#' on their geographic location. 
 #'
 #' The output is a large table containing relevant businesses and a Leaflet map 
 #' pinpointing their location. 
@@ -33,6 +33,10 @@
 #' @param client_secret Required. Your personal Yelp API key stored in your
 #'   keychain and retrieved by `get_key(service = "yelp")`.
 #' @param reviews Logical. Should up to 3 reviews be returned? The Yelp API currently only returns up to 3 reviews, so this is turned off by default. 
+#' 
+#' @examples 
+#' yelp_search("donuts", "Charlottesville, VA)
+#' yelp_search("banh mi", "Toronto, ON", reviews = TRUE)
 #' 
 #' @export
 yelp_search <- function(term = NULL,
@@ -116,12 +120,24 @@ yelp_search <- function(term = NULL,
                                 city = location.city,
                                 state = location.state,
                                 address = location.address1, 
+                                zip = location.zip_code,
+                                country = location.country,
+                                transactions,
                                 rating,
+                                review_count,
                                 price, 
                                 lat = coordinates.latitude, 
                                 lon = coordinates.longitude,
-                                
-                        )
+                                categories
+                        ) %>%
+                        dplyr::mutate(
+                                delivery = unlist(lapply(transactions, find_type("delivery"))),
+                                pickup = unlist(lapply(transactions, find_type("pickup"))),
+                                reservations = unlist(lapply(transactions, find_type("reservations")))
+                        ) %>%
+                        dplyr::select(-transactions)
+                browser()
+                #TODO: show image_url in popup
                 
         } else {
                 
@@ -140,7 +156,12 @@ yelp_search <- function(term = NULL,
         business_tbl
 }
 
-
+#' Find transaction types (delivery, pickup, reservations) 
+#' 
+#' This is an internal function for parsing out the transaction type from the tranactions list column
+#' 
+#' @noRd
+find_type <- function(type) function(x) type %in% x
 
 
 #' Assign `yelp_key` class to your Yelp API key
