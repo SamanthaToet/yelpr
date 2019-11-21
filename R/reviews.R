@@ -12,3 +12,4 @@ scrape_reviews <- function(pagination) {
                 rvest::html_text()
 } 
 
+
