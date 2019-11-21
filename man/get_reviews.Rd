@@ -2,18 +2,23 @@
 % Please edit documentation in R/get_attributes.R
 \name{get_reviews}
 \alias{get_reviews}
-\title{Print a table of up to three reviews for each business}
+\title{Print a table of up to three reviews for each business.}
 \usage{
 get_reviews(tbl, business_name = NULL)
 }
 \arguments{
 \item{tbl}{The results of \code{yelp_search} stored as a dataframe.}
 
-\item{business_name}{Optional string. The name of a specific business to get reviews for. Defaults to \code{NULL}}
+\item{business_name}{Optional string. The name of a specific business to get reviews for. Defaults to \code{NULL}.}
 }
 \value{
 A dataframe with up to 3 truncated reviews for each business.
 }
 \description{
 This is a helper function to be used with \code{yelp_search} to parse the reviews for a specific business or list of businesses. The Yelp API currently only returns up to three truncated reviews for each business.
+}
+\examples{
+get_reviews(tbl)
+get_reviews(tbl, "Wegmans")
+
 }

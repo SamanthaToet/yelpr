@@ -1,10 +1,11 @@
-#' Get and store your Yelp client secret
+#' Get and store your Yelp Fusion client secret
 #' 
-#' This function confirms that the Yelp client secret is valid and stored correctly in your keyring. 
+#' This function confirms that the Yelp Fusion client secret is valid and stored correctly in your keyring. 
 #'
 #' @param client_secret Your Yelp API client secret generated through [Yelp Fusion](https://www.yelp.com/developers/documentation/v3/authentication).
 #'
-#' @return client secret
+#' @return Returns and stores the value of your client secret. 
+#' 
 #' @export
 get_secret <- function(client_secret) {
         

@@ -2,14 +2,14 @@
 % Please edit documentation in R/get_attributes.R
 \name{get_hours}
 \alias{get_hours}
-\title{Print a table of hours for a business}
+\title{Print a table of operating hours for a business.}
 \usage{
 get_hours(tbl, business_name = NULL)
 }
 \arguments{
 \item{tbl}{The results of \code{yelp_search} stored as a dataframe.}
 
-\item{business_name}{Optional string. The name of a specific business to get hours for. Defaults to \code{NULL}.}
+\item{business_name}{Optional string. The name of a specific business to get operating hours for. Defaults to \code{NULL}.}
 }
 \value{
 A dataframe of hours of operation.

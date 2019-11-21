@@ -1,13 +1,13 @@
-#' Print a table of up to three reviews for each business
+#' Print a table of up to three reviews for each business.
 #' 
 #' This is a helper function to be used with `yelp_search` to parse the reviews for a specific business or list of businesses. The Yelp API currently only returns up to three truncated reviews for each business. 
 #'
 #' @param tbl The results of `yelp_search` stored as a dataframe.
-#' @param business_name Optional string. The name of a specific business to get reviews for. Defaults to `NULL` 
+#' @param business_name Optional string. The name of a specific business to get reviews for. Defaults to `NULL`.
 #'
 #' @return A dataframe with up to 3 truncated reviews for each business.
 #' 
-#' @example 
+#' @examples 
 #' get_reviews(tbl)
 #' get_reviews(tbl, "Wegmans")
 #' 
@@ -22,13 +22,12 @@ get_reviews <- function(tbl, business_name = NULL) {
 }
 
 
-
-#' Print a table of hours for a business
+#' Print a table of operating hours for a business.
 #'
 #' This is a helper function to be used with `yelp_search` to parse the hours for a specific business or list of businesses. 
 #'
 #' @param tbl The results of `yelp_search` stored as a dataframe. 
-#' @param business_name Optional string. The name of a specific business to get hours for. Defaults to `NULL`.  
+#' @param business_name Optional string. The name of a specific business to get operating hours for. Defaults to `NULL`.  
 #'
 #' @return A dataframe of hours of operation. 
 #' 
@@ -42,7 +41,10 @@ get_hours <- function(tbl, business_name = NULL) {
         get_column(tbl = tbl, column_name = hours, business_name = business_name)
 }
 
-
+#' Get a list column to parse.
+#' 
+#' This is an internal function for parsing out list columns such as reviews and hours. 
+#' 
 #' @noRd
 get_column <- function(tbl, column_name, business_name = NULL) {
         if (!is.null(business_name)) {

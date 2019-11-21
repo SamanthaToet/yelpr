@@ -50,7 +50,7 @@ keychain and retrieved by \code{get_key(service = "yelp")}.}
 }
 \description{
 With this function you can search all businesses in the Yelp directory based
-on geographic location.
+on their geographic location.
 }
 \details{
 The output is a large table containing relevant businesses and a Leaflet map

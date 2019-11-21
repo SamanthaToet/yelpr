@@ -13,3 +13,4 @@ empty_day_tbl <- function(){
                 dplyr::mutate(start = NA_real_, end = NA_real_, is_overnight = NA) %>%
                 dplyr::select(day = day_name, weekday, start, end, is_overnight)
 }
+
